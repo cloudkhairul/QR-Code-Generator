@@ -11,3 +11,11 @@ function generate() {
     qrImage.style.display = 'inline-block';
   }
 }
+download.addEventListener('click', async () => {
+  const response = await fetch(qrImage.src);
+  const blob = await response.blob();
+  const downloadLink = document.createElement('a');
+  downloadLink.href = URL.createObjectURL(blob);
+  downloadLink.download = 'qrcode';
+  downloadLink.click();
+})
